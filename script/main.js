@@ -145,72 +145,74 @@ function create_table_10(userNumber, systemNumber) {
 
 
 function createMainDiv(value1, value2) {
-    let mainDiv = document.createElement("div");
-    mainDiv.classList.add("mainDiv");
-    mainDiv.classList.add("hide");
-    document.body.appendChild(mainDiv);
-
-    let mainInput = document.createElement("input");
-    mainInput.classList.add("mainInput");
-    mainInput.placeholder = "Введи число";
-    mainDiv.appendChild(mainInput);
-
-    let mainButton = document.createElement("button");
-    mainButton.classList.add("mainButton");
-    mainButton.textContent = "Принять";
-    mainDiv.appendChild(mainButton);
-
+    document.querySelector(".mainDiv").classList.remove("hide")
+    document.querySelector(".backButton2").addEventListener("click", () => {
+        document.querySelector(".systemDiv").classList.remove("hide");
+        document.querySelector(".mainDiv").classList.add("hide");
+    });
     if (value1 == 10) {
-        mainButton.addEventListener("click", () => {
+        document.querySelector(".mainButton").addEventListener("click", () => {
             console.log("Вызвалась функция createMainDiv")
-            if (mainInput.value != "") {
+            if (document.querySelector(".mainInput").value != "") {
                 const answer10 = document.createElement("p");
                 answer10.className = "answerP";
-                answer10.innerHTML = `Результат перевода: ${mainInput.value}<sub>10</sub> = ${decimalToBinary10(+mainInput.value, value2)}<sub>${value2}</sub>`;
-                mainDiv.appendChild(answer10);
-                create_table_10(+mainInput.value, value2);
+                answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>10</sub> = ${decimalToBinary10(+document.querySelector(".mainInput").value, value2)}<sub>${value2}</sub>`;
+                document.querySelector(".mainDiv").appendChild(answer10);
+                create_table_10(+document.querySelector(".mainInput").value, value2);
             };
         });
     }
 
     else {
-        mainButton.addEventListener("click", () => {
+        document.querySelector(".mainButton").addEventListener("click", () => {
             console.log("Вызвалась функция createMainDiv")
-            if (mainInput.value != "") {
+            if (document.querySelector(".mainInput").value != "") {
+                if (document.querySelector(".answerP") != null) {
+                    document.querySelector(".answerP").remove()
+                }
                 const answer10 = document.createElement("p");
                 answer10.className = "answerP";
-                answer10.innerHTML = `Результат перевода: ${mainInput.value}<sub>${value1}</sub> = ${decimalToBinaryOther(mainInput.value, value1, value2)}<sub>${value2}</sub>`;
-                mainDiv.appendChild(answer10);
+                answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
+                document.querySelector(".mainDiv").appendChild(answer10);
                 // create_table_10(+mainInput.value, value2);
-            };
+            }
         });
     }
-};
+}
 
+document.querySelector(".calculator").addEventListener("click", () => {
+    document.querySelector(".descriptionDiv").classList.add("hide");
+    document.querySelector(".systemDiv").classList.remove("hide");
+    document.querySelector(".systemButton").addEventListener("click", () => {
+        let radioButton1 = document.querySelectorAll(".radio1");
+        let radioButton2 = document.querySelectorAll(".radio2");
+        let value1 = 0;
+        let value2 = 0;
+        let i = 0;
+        while (i < radioButton1.length) {
+            if (radioButton1[i].checked) {
+                value1 = +radioButton1[i].value;
+            };
+            i += 1;
+        };
+        i = 0;
+        while (i < radioButton2.length) {
+            if (radioButton2[i].checked) {
+                value2 = +radioButton2[i].value;
+            };
+            i += 1;
+        };
+        console.log(value1, value2);
+        document.querySelector(".systemDiv").classList.add("hide");
+        createMainDiv(value1, value2);
+    });
+    document.querySelector(".backButton1").addEventListener("click", () => {
+        document.querySelector(".descriptionDiv").classList.remove("hide");
+        document.querySelector(".systemDiv").classList.add("hide");
+    });
+});
 
-descriptionButton = document.createElement("button");
-descriptionButton.textContent = "Принять";
-document.querySelector(".descriptionDiv").appendChild(descriptionButton);
-descriptionButton.addEventListener("click", () => {
-    let radioButton1 = document.querySelectorAll(".radio1");
-    let radioButton2 = document.querySelectorAll(".radio2");
-    let value1 = 0;
-    let value2 = 0;
-    let i = 0;
-    while (i < radioButton1.length) {
-        if (radioButton1[i].checked) {
-            value1 = +radioButton1[i].value;
-        };
-        i += 1;
-    };
-    i = 0;
-    while (i < radioButton2.length) {
-        if (radioButton2[i].checked) {
-            value2 = +radioButton2[i].value;
-        };
-        i += 1;
-    };
-    console.log(value1, value2);
-    document.querySelector(".descriptionDiv").remove();
-    createMainDiv(value1, value2);
+document.querySelector(".tasks").addEventListener("click", () => {
+    document.querySelector(".descriptionDiv").classList.add("hide");
+    document.querySelector(".tasksDiv").classList.remove("hide");
 });
