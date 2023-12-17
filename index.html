@@ -8,10 +8,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <div class="descriptionDiv">
-        <h1 class="title"></h1>
-        <p class="descriptionP"></p>
+        <h1></h1>
+        <p></p>
+        <button class="calculator">Калькулятор</button>
+        <button class="tasks">Задания</button>
+    </div>
+    <div class="tasksDiv hide">
+        <p>Начальная система счисления:</p>
+        <select name="start" id="start">
+            <option value="s2">Двоичная</option>
+            <option value="s8">Восьмеричная</option>
+            <option value="s10">Десятичная</option>
+            <option value="s16">Шестнадцатеричная</option>
+        </select>
+        <p>Конечная система счисления:</p>
+        <select name="end" id="end">
+            <option value="e8">Двоичная</option>
+            <option value="e8">Восьмеричная</option>
+            <option value="e10">Десятичная</option>
+            <option value="e16">Шестнадцатеричная</option>
+        </select>
+    </div>
+    <div class="systemDiv hide">
         <div class="systemChoice">
             <div class="first">
                 <ul>
@@ -54,8 +73,14 @@
                 </ul>
             </div>
         </div>
+        <button class="systemButton">Принять</button>
+        <button class="backButton1">Назад</button>
     </div>
-
+    <div class="mainDiv hide">
+        <input type="number" class="mainInput" placeholder="Введи число">
+        <button class="mainButton">Принять</button>
+        <button class="backButton2">Назад</button>
+    </div>
     <script src="script/main.js"></script>
 </body>
 </html>
