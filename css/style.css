@@ -19,9 +19,9 @@ button {
     font-family: 'Open Sans', sans-serif;
 }
 
-/* .hide {
+.hide {
     display: none
-} */
+}
 
 .systemChoice {
     display: flex;
