@@ -1,3 +1,19 @@
+function checkNumber(number, notation) {
+    const values = [
+        '0', '1', '2', '3',
+        '4', '5', '6', '7',
+        '8', '9', 'A', 'B',
+        'C', 'D', 'E', 'F'
+    ].slice(0, notation);
+    for (let symbol of number.toString()) {
+        if (!values.includes(symbol)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 function decimalToBinary10(userNumber, systemNumber) {
     let letters = "ABCDEF";
     let value = "";
@@ -145,38 +161,58 @@ function create_table_10(userNumber, systemNumber) {
 
 
 function createMainDiv(value1, value2) {
-    document.querySelector(".mainDiv").classList.remove("hide")
+    // value1 - 2
+    // value2 - 8
+    document.querySelector(".mainDiv").classList.remove("hide");
     document.querySelector(".backButton2").addEventListener("click", () => {
+        if (document.querySelector("table") != null) {
+            document.querySelector("table").remove();
+        }
+        if (document.querySelector(".answerP") != null) {
+            document.querySelector(".answerP").remove()
+        }
         document.querySelector(".systemDiv").classList.remove("hide");
         document.querySelector(".mainDiv").classList.add("hide");
     });
-    if (value1 == 10) {
+    if (value1 == 10 && value1 !== value2) {
         document.querySelector(".mainButton").addEventListener("click", () => {
             console.log("Вызвалась функция createMainDiv")
             if (document.querySelector(".mainInput").value != "") {
-                const answer10 = document.createElement("p");
-                answer10.className = "answerP";
-                answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>10</sub> = ${decimalToBinary10(+document.querySelector(".mainInput").value, value2)}<sub>${value2}</sub>`;
-                document.querySelector(".mainDiv").appendChild(answer10);
-                create_table_10(+document.querySelector(".mainInput").value, value2);
-            };
+                console.log(checkNumber(document.querySelector(".mainInput").value, value1));
+                if (checkNumber(document.querySelector(".mainInput").value, value1) == true) {
+                    const answer10 = document.createElement("p");
+                    answer10.className = "answerP";
+                    answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>10</sub> = ${decimalToBinary10(+document.querySelector(".mainInput").value, value2)}<sub>${value2}</sub>`;
+                    document.querySelector(".mainDiv").appendChild(answer10);
+                    create_table_10(+document.querySelector(".mainInput").value, value2);
+                    document.querySelector("table").classList.remove("hide");
+                    document.querySelector(".mainInput").value = "";
+                }
+            }
         });
     }
 
     else {
-        document.querySelector(".mainButton").addEventListener("click", () => {
-            console.log("Вызвалась функция createMainDiv")
-            if (document.querySelector(".mainInput").value != "") {
-                if (document.querySelector(".answerP") != null) {
-                    document.querySelector(".answerP").remove()
+        if (value1 !== value2) {
+            document.querySelector(".mainButton").addEventListener("click", () => {
+                console.log("Вызвалась функция createMainDiv")
+                if (document.querySelector(".mainInput").value != "") {
+                    console.log(checkNumber(document.querySelector(".mainInput").value, value1));
+                    if (checkNumber(document.querySelector(".mainInput").value, value1) == true) {
+                        if (document.querySelector(".answerP") != null) {
+                            document.querySelector(".answerP").remove()
+                        }
+                        const answer10 = document.createElement("p");
+                        answer10.className = "answerP";
+                        answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
+                        document.querySelector(".mainDiv").appendChild(answer10);
+                        // create_table_10(+mainInput.value, value2);
+                        // document.querySelector("table").classList.remove("hide");
+                        document.querySelector(".mainInput").value = "";
+                    }
                 }
-                const answer10 = document.createElement("p");
-                answer10.className = "answerP";
-                answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
-                document.querySelector(".mainDiv").appendChild(answer10);
-                // create_table_10(+mainInput.value, value2);
-            }
-        });
+            });
+        }
     }
 }
 
@@ -213,6 +249,12 @@ document.querySelector(".calculator").addEventListener("click", () => {
 });
 
 document.querySelector(".tasks").addEventListener("click", () => {
+    if (document.querySelector("table") != null) {
+        document.querySelector("table").remove();
+    }
+    if (document.querySelector(".answerP") != null) {
+        document.querySelector(".answerP").remove()
+    }
     document.querySelector(".descriptionDiv").classList.add("hide");
     document.querySelector(".tasksDiv").classList.remove("hide");
 });
