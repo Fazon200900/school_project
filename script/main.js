@@ -1,4 +1,4 @@
-function checkNumber(number, notation) {
+function checkNumber(number, notation) { // Функция для проверки числа на наличие ишних символов
     const values = [
         '0', '1', '2', '3',
         '4', '5', '6', '7',
@@ -14,7 +14,7 @@ function checkNumber(number, notation) {
 }
 
 
-function decimalToBinary10(userNumber, systemNumber) {
+function decimalToBinary10(userNumber, systemNumber) { // Функция для перевода из других систем счисления в десятичную
     let letters = "ABCDEF";
     let value = "";
     while (userNumber > 0) {
@@ -30,7 +30,7 @@ function decimalToBinary10(userNumber, systemNumber) {
     return value;
 }
 
-function decimalToBinaryOther(userNumber, systemNumber1, systemNumber2) {
+function decimalToBinaryOther(userNumber, systemNumber1, systemNumber2) { // Функция для перевода из систем счисления в другие системы
     let strNumber = String(userNumber);
     let c1 = strNumber.length - 1;
     let letters = "ABCDEF";
@@ -56,7 +56,7 @@ function decimalToBinaryOther(userNumber, systemNumber1, systemNumber2) {
     return decimalToBinary10(sum, systemNumber2);
 }
 
-function create_table_10(userNumber, systemNumber) {
+function create_table_10(userNumber, systemNumber) { // Функция для создания таблицы при переводе из десятичной системы
     let letters = "ABCDEF";
     if (document.querySelector("table") != null) {
         document.querySelector("table").remove();
@@ -160,7 +160,7 @@ function create_table_10(userNumber, systemNumber) {
 }
 
 
-function createMainDiv(value1, value2) {
+function createMainDiv(value1, value2) { // Функция для создания div с полем для ввода числа и ответом
     // value1 - 2
     // value2 - 8
     document.querySelector(".mainDiv").classList.remove("hide");
@@ -173,6 +173,8 @@ function createMainDiv(value1, value2) {
         }
         document.querySelector(".systemDiv").classList.remove("hide");
         document.querySelector(".mainDiv").classList.add("hide");
+        value1 = 0;
+        value2 = 0;
     });
     if (value1 == 10 && value1 !== value2) {
         document.querySelector(".mainButton").addEventListener("click", () => {
@@ -216,8 +218,8 @@ function createMainDiv(value1, value2) {
     }
 }
 
-document.querySelector(".calculator").addEventListener("click", () => {
-    document.querySelector(".descriptionDiv").classList.add("hide");
+document.querySelector(".calculator").addEventListener("click", () => { // Проверка активированных радиобатоннов и запись их в переменную value1 и value2
+    document.querySelector(".descriptionDiv").classList.add("hide"); 
     document.querySelector(".systemDiv").classList.remove("hide");
     document.querySelector(".systemButton").addEventListener("click", () => {
         let radioButton1 = document.querySelectorAll(".radio1");
@@ -248,7 +250,7 @@ document.querySelector(".calculator").addEventListener("click", () => {
     });
 });
 
-document.querySelector(".tasks").addEventListener("click", () => {
+document.querySelector(".tasks").addEventListener("click", () => { // Кнопка назад
     if (document.querySelector("table") != null) {
         document.querySelector("table").remove();
     }
