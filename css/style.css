@@ -5,18 +5,84 @@ html {
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Open Sans', sans-serif;
-    background: rgb(6,0,106);
-    background: linear-gradient(110deg, rgba(6,0,106,1) 0%, rgba(0,212,255,1) 91%);
+    background: rgb(52, 73, 85);
+    background: linear-gradient(110deg, rgb(52, 73, 85) 0%, rgb(120, 160, 131) 91%);
+}
+
+li {
+    list-style-type: none;
+    padding: 10px;
 }
 
 input {
+    padding: 20px;
+    margin: 5px;
+    margin-top: 20px;
     font-family: 'Open Sans', sans-serif;
     outline: none;
+    background: rgb(53, 55, 75);
+    border: 1px solid rgb(80, 114, 123);
+    border-radius: 10px;
+    color: rgb(80, 114, 123);
+}
+
+label {
+    padding: 5px;
+    background: rgb(53, 55, 75);
+    border: 1px solid rgb(80, 114, 123);
+    border-radius: 10px;
+    color: rgb(80, 114, 123);
+
 }
 
 button {
     font-family: 'Open Sans', sans-serif;
+    background: rgb(53, 55, 75);
+    border: 1px solid rgb(80, 114, 123);
+    border-radius: 15px;
+    color: rgb(80, 114, 123);
+}
+
+.calculator {
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.tasks {
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.systemButton {
+    padding: 10px;
+    margin-left: 190px;
+}
+
+.backButton1 {
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.mainButton {
+    padding: 20px;
+    margin: 5px;
+    margin-top: 20px;
+}
+
+.backButton2 {
+    padding: 20px;
+    margin: 5px;
+    margin-top: 20px;
 }
 
 .hide {
