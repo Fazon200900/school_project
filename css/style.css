@@ -47,6 +47,14 @@ button {
     color: rgb(80, 114, 123);
 }
 
+p {
+    padding: 5px;
+    background: rgb(53, 55, 75);
+    border: 1px solid rgb(80, 114, 123);
+    border-radius: 15px;
+    color: rgb(80, 114, 123);
+}
+
 .calculator {
     padding: 20px;
     padding-left: 40px;
@@ -86,7 +94,12 @@ button {
 }
 
 .hide {
-    display: none
+    display: none;
+}
+
+.in {
+    animation-name: in-center;
+    animation-duration: 1s;
 }
 
 .systemChoice {
@@ -113,6 +126,26 @@ button {
 
 .temp {
     color: red
+}
+
+@keyframes out-center {
+    0%{
+        size: 0%;
+    }
+
+    100%{
+        size: 100%;
+    }
+}
+
+@keyframes in-center {
+    0%{
+        size: 100%;
+    }
+
+    100%{
+        size: 0%;
+    }
 }
 
 /*предпоследняя ячейка предпоследней строки*/
