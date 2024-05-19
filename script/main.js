@@ -183,7 +183,8 @@ function createMainDiv(value1, value2) { // Функция для создани
                 console.log(checkNumber(document.querySelector(".mainInput").value, value1));
                 if (checkNumber(document.querySelector(".mainInput").value, value1) == true) {
                     const answer10 = document.createElement("p");
-                    answer10.className = "answerP";
+                    answer10.classList.add("answerP");
+                    answer10.classList.add("slide-top");
                     answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>10</sub> = ${decimalToBinary10(+document.querySelector(".mainInput").value, value2)}<sub>${value2}</sub>`;
                     document.querySelector(".mainDiv").appendChild(answer10);
                     create_table_10(+document.querySelector(".mainInput").value, value2);
@@ -205,7 +206,8 @@ function createMainDiv(value1, value2) { // Функция для создани
                             document.querySelector(".answerP").remove()
                         }
                         const answer10 = document.createElement("p");
-                        answer10.className = "answerP";
+                        answer10.classList.add("answerP");
+                        answer10.classList.add("slide-top");
                         answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
                         document.querySelector(".mainDiv").appendChild(answer10);
                         // create_table_10(+mainInput.value, value2);
@@ -216,10 +218,10 @@ function createMainDiv(value1, value2) { // Функция для создани
             });
         }
     }
-}
+}   
 
 document.querySelector(".calculator").addEventListener("click", () => { // Проверка активированных радиобатоннов и запись их в переменную value1 и value2
-    document.querySelector(".descriptionDiv").classList.add("hide"); 
+    document.querySelector(".descriptionDiv").classList.add("hide");
     document.querySelector(".systemDiv").classList.remove("hide");
     document.querySelector(".systemButton").addEventListener("click", () => {
         let radioButton1 = document.querySelectorAll(".radio1");
@@ -244,13 +246,15 @@ document.querySelector(".calculator").addEventListener("click", () => { // Пр�
         document.querySelector(".systemDiv").classList.add("hide");
         createMainDiv(value1, value2);
     });
-    document.querySelector(".backButton1").addEventListener("click", () => {
+    document.querySelector(".backButton1").addEventListener("click", () => { // кнопка назад
         document.querySelector(".descriptionDiv").classList.remove("hide");
         document.querySelector(".systemDiv").classList.add("hide");
     });
 });
 
-document.querySelector(".tasks").addEventListener("click", () => { // Кнопка назад
+document.querySelector(".tasks").addEventListener("click", () => {
+    const select1 = document.getElementById("start");
+    const select2 = document.getElementById("end");
     if (document.querySelector("table") != null) {
         document.querySelector("table").remove();
     }
@@ -259,4 +263,18 @@ document.querySelector(".tasks").addEventListener("click", () => { // Кнопк
     }
     document.querySelector(".descriptionDiv").classList.add("hide");
     document.querySelector(".tasksDiv").classList.remove("hide");
+    document.querySelector(".tasksButton").addEventListener("click", () => {
+        const sys1 = +select1.value.slice(1, select1.value.length);
+        const sys2 = +select2.value.slice(1, select2.value.length);
+        console.log(sys1, sys2);
+        if (sys1 !== sys2) {
+            const tasksNames = ["common", "least", "greatest", "comprasion"];
+            task = tasksNames[Math.random()];
+            document.querySelector(".tasksDiv").classList.add("hide");
+        }
+    })
+    document.querySelector(".backButton0").addEventListener("click", () => {
+        document.querySelector(".descriptionDiv").classList.remove("hide");
+        document.querySelector(".tasksDiv").classList.add("hide");
+    })
 });
