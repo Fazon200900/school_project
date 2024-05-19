@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 
+@-webkit-keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(500px);
+              transform: translateY(500px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+  @keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(500px);
+              transform: translateY(500px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+              transform: translateY(0px);
+    }
+  }
+
 html {
     height: 100%;
 }
@@ -8,9 +29,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
     font-family: 'Open Sans', sans-serif;
-    background: rgb(52, 73, 85);
-    background: linear-gradient(110deg, rgb(52, 73, 85) 0%, rgb(120, 160, 131) 91%);
+    background-image: url(../media/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: rgb(30, 3, 66);
+    background: linear-gradient(110deg, rgb(30, 3, 66) 5%, rgb(175, 9, 226) 75%); */
+}
+
+h1 {
+    color: black;
+    font-size: 40px;
 }
 
 li {
@@ -19,48 +49,62 @@ li {
 }
 
 input {
-    padding: 20px;
     margin: 5px;
     margin-top: 20px;
+    padding: 20px;
     font-family: 'Open Sans', sans-serif;
-    outline: none;
-    background: rgb(53, 55, 75);
-    border: 1px solid rgb(80, 114, 123);
+    color: black;
+    background-color: rgba(30, 3, 66, 0.164);
+    backdrop-filter: blur(10px);
+    border: 1px solid black;
     border-radius: 10px;
-    color: rgb(80, 114, 123);
+    outline: none;
+}
+
+input::placeholder {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(0, 0, 0);
 }
 
 label {
     padding: 5px;
-    background: rgb(53, 55, 75);
-    border: 1px solid rgb(80, 114, 123);
+    background-color: rgba(30, 3, 66, 0.164);
+    backdrop-filter: blur(10px);
+    color: black;
+    font-size: 25px;
+    border: 1px solid black;
     border-radius: 10px;
-    color: rgb(80, 114, 123);
 
 }
 
 button {
-    font-family: 'Open Sans', sans-serif;
-    background: rgb(53, 55, 75);
-    border: 1px solid rgb(80, 114, 123);
+    background: rgba(30, 3, 66, 0.164);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 15px;
-    color: rgb(80, 114, 123);
+}
+
+button span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    color: rgb(0, 0, 0);
 }
 
 p {
-    padding: 5px;
-    background: rgb(53, 55, 75);
-    border: 1px solid rgb(80, 114, 123);
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    background: rgba(30, 3, 66, 0.164);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 15px;
-    color: rgb(80, 114, 123);
 }
 
 .calculator {
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
     margin-top: 20px;
     margin-right: 10px;
+    padding: 20px 40px;
+    /* padding-left: 40px;
+    padding-right: 40px; */
 }
 
 .tasks {
@@ -69,6 +113,14 @@ p {
     padding-right: 40px;
     margin-top: 20px;
     margin-right: 10px;
+}
+
+.tasksButton {
+    padding: 10px;
+}
+
+.backButton0 {
+    padding: 10px;
 }
 
 .systemButton {
@@ -97,9 +149,9 @@ p {
     display: none;
 }
 
-.in {
-    animation-name: in-center;
-    animation-duration: 1s;
+.slide-top {
+	-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .systemChoice {
@@ -128,27 +180,9 @@ p {
     color: red
 }
 
-@keyframes out-center {
-    0%{
-        size: 0%;
-    }
-
-    100%{
-        size: 100%;
-    }
-}
-
-@keyframes in-center {
-    0%{
-        size: 100%;
-    }
-
-    100%{
-        size: 0%;
-    }
-}
 
 /*предпоследняя ячейка предпоследней строки*/
 tbody tr:nth-last-child(2) td:nth-last-child(2) {
     color: red;
 }
+  
