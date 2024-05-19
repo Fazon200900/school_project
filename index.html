@@ -9,12 +9,11 @@
 </head>
 <body>
     <div class="descriptionDiv"> <!--Меню-->
-        <!-- <h1></h1>
-        <p></p> -->
-        <button class="calculator">Калькулятор</button>
-        <button class="tasks">Задания</button>
+        <h1 class="slide-top">Калькулятор степеней счисления онлайн</h1>
+        <button class="calculator slide-top"><span>Калькулятор</span></button>
+        <button class="tasks slide-top"><span>Задания</span></button>
     </div>
-    <div class="tasksDiv hide"> <!--Задания-->
+    <div class="tasksDiv hide slide-top"> <!--Задания-->
         <p>Начальная система счисления:</p>
         <select name="start" id="start">
             <option value="s2">Двоичная</option>
@@ -24,13 +23,15 @@
         </select>
         <p>Конечная система счисления:</p>
         <select name="end" id="end">
-            <option value="e8">Двоичная</option>
+            <option value="e2">Двоичная</option>
             <option value="e8">Восьмеричная</option>
             <option value="e10">Десятичная</option>
             <option value="e16">Шестнадцатеричная</option>
         </select>
+        <button class="tasksButton">Принять</button>
+        <button class="backButton0">Назад</button>
     </div>
-    <div class="systemDiv hide"> <!--Калькулятор-->
+    <div class="systemDiv hide slide-top"> <!--Калькулятор-->
         <div class="systemChoice">
             <div class="first">
                 <ul>
@@ -73,13 +74,13 @@
                 </ul>
             </div>
         </div>
-        <button class="systemButton">Принять</button>
-        <button class="backButton1">Назад</button>
+        <button class="systemButton"><span>Принять</span></button>
+        <button class="backButton1"><span>Назад</span></button>
     </div>
     <div class="mainDiv hide">
-        <input type="text" class="mainInput" placeholder="Введи число">
-        <button class="mainButton">Принять</button>
-        <button class="backButton2">Назад</button>
+        <input type="text" class="mainInput slide-top" placeholder="Введи число">
+        <button class="mainButton slide-top"><span>Принять</span></button>
+        <button class="backButton2 slide-top"><span>Назад</span></button>
     </div>
     <script src="script/main.js"></script>
 </body>
