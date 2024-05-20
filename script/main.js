@@ -1,4 +1,8 @@
-function checkNumber(number, notation) { // Функция для проверки числа на наличие ишних символов
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+function checkNumber(number, notation) { // Функция для проверки числа на наличие лишних символов
     const values = [
         '0', '1', '2', '3',
         '4', '5', '6', '7',
@@ -56,6 +60,193 @@ function decimalToBinaryOther(userNumber, systemNumber1, systemNumber2) { // Ф�
     return decimalToBinary10(sum, systemNumber2);
 }
 
+function commonTask(sys1, sys2) {
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("taskDiv");
+    taskDiv.classList.add("slide-top");
+    document.body.appendChild(taskDiv);
+
+    const num = getRandomInt(999999);
+
+    const taskText = document.createElement("p");
+    taskText.classList.add("taskText");
+    taskText.innerHTML = `Переведите: ${decimalToBinaryOther(num, 10, sys1)}<sub>${sys1}</sub> = __________<sub>${sys2}</sub>`
+    taskDiv.appendChild(taskText);
+
+    const taskInput = document.createElement("input");
+    taskInput.type = "text";
+    taskInput.placeholder = "Введи число"
+    taskInput.classList.add("taskInput");
+    taskDiv.appendChild(taskInput);
+
+    const taskConfirm = document.createElement("button");
+    taskConfirm.classList.add("taskConfirm");
+    taskDiv.appendChild(taskConfirm);
+
+    const span1 = document.createElement("span");
+    span1.textContent = "Принять";
+    taskConfirm.appendChild(span1);
+
+    const taskBack = document.createElement("button");
+    taskBack.classList.add("taskBack");
+    taskDiv.appendChild(taskBack);
+
+    const span2 = document.createElement("span");
+    span2.textContent = "Назад";
+    taskBack.appendChild(span2);
+
+    taskConfirm.addEventListener("click", () => {
+        if (taskInput.value == decimalToBinaryOther(num, 10, sys2)) {
+            alert("Правильный ответ");
+        }
+        else {
+            alert("Неверный ответ");
+        }
+    })
+    taskBack.addEventListener("click", () => {
+        document.querySelector(".tasksDiv").classList.remove("hide");
+        taskDiv.remove();
+    })
+}
+
+function leastTask(sys1, sys2) {
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("taskDiv");
+    taskDiv.classList.add("slide-top");
+    document.body.appendChild(taskDiv);
+
+    const letters = "ABCDEF";
+    let num = 0;
+    const num1 = getRandomInt(999999);
+    const num2 = getRandomInt(999999);
+    const num3 = getRandomInt(999999);
+    nums = [num1, num2, num3]
+    let sum = 0
+    for (let i of nums) {
+        let sum2 = 0
+        for (let j of String(decimalToBinaryOther(i, 10, sys2)).split("")) {
+            if (letters.includes(j)) {
+                sum2 += (10 + letters.indexOf(j))
+            }
+            else {
+                sum2 += +j;
+            }
+        }
+        if (sum2 > sum) {
+            sum = sum2;
+            num = decimalToBinaryOther(i, 10, sys1);
+        }
+    }
+    const taskText = document.createElement("p");
+    taskText.classList.add("taskText");
+    taskText.innerHTML = `Напишите число сумма цифр, которого при переводе в ${sys2} систему будет наибольшей: ${decimalToBinaryOther(num1, 10, sys1)}<sub>${sys1}</sub>, ${decimalToBinaryOther(num2, 10, sys1)}<sub>${sys1}</sub>, ${decimalToBinaryOther(num3, 10, sys1)}<sub>${sys1}</sub>`
+    taskDiv.appendChild(taskText);
+
+    const taskInput = document.createElement("input");
+    taskInput.type = "text";
+    taskInput.placeholder = "Введи число"
+    taskInput.classList.add("taskInput");
+    taskDiv.appendChild(taskInput);
+
+    const taskConfirm = document.createElement("button");
+    taskConfirm.classList.add("taskConfirm");
+    taskDiv.appendChild(taskConfirm);
+
+    const span1 = document.createElement("span");
+    span1.textContent = "Принять";
+    taskConfirm.appendChild(span1);
+
+    const taskBack = document.createElement("button");
+    taskBack.classList.add("taskBack");
+    taskDiv.appendChild(taskBack);
+
+    const span2 = document.createElement("span");
+    span2.textContent = "Назад";
+    taskBack.appendChild(span2);
+
+    taskConfirm.addEventListener("click", () => {
+        if (taskInput.value == num) {
+            alert("Правильный ответ");
+        }
+        else {
+            alert("Неверный ответ");
+        }
+    })
+    taskBack.addEventListener("click", () => {
+        document.querySelector(".tasksDiv").classList.remove("hide");
+        taskDiv.remove();
+    })
+}
+
+function greatestTask(sys1, sys2) {
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("taskDiv");
+    taskDiv.classList.add("slide-top");
+    document.body.appendChild(taskDiv);
+
+    const letters = "ABCDEF";
+    let num = 0;
+    const num1 = getRandomInt(999999);
+    const num2 = getRandomInt(999999);
+    const num3 = getRandomInt(999999);
+    nums = [num1, num2, num3]
+    let sum = 999999;
+    for (let i of nums) {
+        let sum2 = 0
+        for (let j of String(decimalToBinaryOther(i, 10, sys2)).split("")) {
+            if (letters.includes(j)) {
+                sum2 += (10 + letters.indexOf(j))
+            }
+            else {
+                sum2 += +j;
+            }
+        }
+        if (sum2 < sum) {
+            sum = sum2;
+            num = decimalToBinaryOther(i, 10, sys1);
+        }
+    }
+    const taskText = document.createElement("p");
+    taskText.classList.add("taskText");
+    taskText.innerHTML = `Напишите число сумма цифр, которого при переводе в ${sys2} систему будет наименьшей: ${decimalToBinaryOther(num1, 10, sys1)}<sub>${sys1}</sub>, ${decimalToBinaryOther(num2, 10, sys1)}<sub>${sys1}</sub>, ${decimalToBinaryOther(num3, 10, sys1)}<sub>${sys1}</sub>`
+    taskDiv.appendChild(taskText);
+
+    const taskInput = document.createElement("input");
+    taskInput.type = "text";
+    taskInput.placeholder = "Введи число"
+    taskInput.classList.add("taskInput");
+    taskDiv.appendChild(taskInput);
+
+    const taskConfirm = document.createElement("button");
+    taskConfirm.classList.add("taskConfirm");
+    taskDiv.appendChild(taskConfirm);
+
+    const span1 = document.createElement("span");
+    span1.textContent = "Принять";
+    taskConfirm.appendChild(span1);
+
+    const taskBack = document.createElement("button");
+    taskBack.classList.add("taskBack");
+    taskDiv.appendChild(taskBack);
+
+    const span2 = document.createElement("span");
+    span2.textContent = "Назад";
+    taskBack.appendChild(span2);
+
+    taskConfirm.addEventListener("click", () => {
+        if (taskInput.value == num) {
+            alert("Правильный ответ");
+        }
+        else {
+            alert("Неверный ответ");
+        }
+    })
+    taskBack.addEventListener("click", () => {
+        document.querySelector(".tasksDiv").classList.remove("hide");
+        taskDiv.remove();
+    })
+}
+
 function create_table_10(userNumber, systemNumber) { // Функция для создания таблицы при переводе из десятичной системы
     let letters = "ABCDEF";
     if (document.querySelector("table") != null) {
@@ -64,8 +255,7 @@ function create_table_10(userNumber, systemNumber) { // Функция для с
     }
 
     let table = document.createElement("table");
-    document.body.appendChild(table);
-    table.classList.add("hide");
+    document.querySelector(".tableDiv").appendChild(table);
 
     let tbody = document.createElement("tbody");
     table.appendChild(tbody);
@@ -165,6 +355,7 @@ function createMainDiv(value1, value2) { // Функция для создани
     // value2 - 8
     document.querySelector(".mainDiv").classList.remove("hide");
     document.querySelector(".backButton2").addEventListener("click", () => {
+        document.querySelector(".mainInput").value = ""
         if (document.querySelector("table") != null) {
             document.querySelector("table").remove();
         }
@@ -173,11 +364,12 @@ function createMainDiv(value1, value2) { // Функция для создани
         }
         document.querySelector(".systemDiv").classList.remove("hide");
         document.querySelector(".mainDiv").classList.add("hide");
+        document.querySelector(".tableDiv").classList.add("hide");
         value1 = 0;
         value2 = 0;
     });
-    if (value1 == 10 && value1 !== value2) {
-        document.querySelector(".mainButton").addEventListener("click", () => {
+    document.querySelector(".mainButton").addEventListener("click", () => {
+        if (value1 !== value2) {
             console.log("Вызвалась функция createMainDiv")
             if (document.querySelector(".mainInput").value != "") {
                 console.log(checkNumber(document.querySelector(".mainInput").value, value1));
@@ -185,39 +377,22 @@ function createMainDiv(value1, value2) { // Функция для создани
                     const answer10 = document.createElement("p");
                     answer10.classList.add("answerP");
                     answer10.classList.add("slide-top");
-                    answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>10</sub> = ${decimalToBinary10(+document.querySelector(".mainInput").value, value2)}<sub>${value2}</sub>`;
+                    answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
                     document.querySelector(".mainDiv").appendChild(answer10);
-                    create_table_10(+document.querySelector(".mainInput").value, value2);
-                    document.querySelector("table").classList.remove("hide");
+                    create_table_10(decimalToBinaryOther(document.querySelector(".mainInput").value, value1, 10), value2);
+                    document.querySelector(".tableDiv").classList.remove("hide");
                     document.querySelector(".mainInput").value = "";
                 }
-            }
-        });
-    }
-
-    else {
-        if (value1 !== value2) {
-            document.querySelector(".mainButton").addEventListener("click", () => {
-                console.log("Вызвалась функция createMainDiv")
-                if (document.querySelector(".mainInput").value != "") {
-                    console.log(checkNumber(document.querySelector(".mainInput").value, value1));
-                    if (checkNumber(document.querySelector(".mainInput").value, value1) == true) {
-                        if (document.querySelector(".answerP") != null) {
-                            document.querySelector(".answerP").remove()
-                        }
-                        const answer10 = document.createElement("p");
-                        answer10.classList.add("answerP");
-                        answer10.classList.add("slide-top");
-                        answer10.innerHTML = `Результат перевода: ${document.querySelector(".mainInput").value}<sub>${value1}</sub> = ${decimalToBinaryOther(document.querySelector(".mainInput").value, value1, value2)}<sub>${value2}</sub>`;
-                        document.querySelector(".mainDiv").appendChild(answer10);
-                        // create_table_10(+mainInput.value, value2);
-                        // document.querySelector("table").classList.remove("hide");
-                        document.querySelector(".mainInput").value = "";
-                    }
+                else {
+                    alert("Неверное число");
+                    return false;
                 }
-            });
+            }
+            else {
+                alert("Введите число");
+            }
         }
-    }
+    });
 }   
 
 document.querySelector(".calculator").addEventListener("click", () => { // Проверка активированных радиобатоннов и запись их в переменную value1 и value2
@@ -268,9 +443,24 @@ document.querySelector(".tasks").addEventListener("click", () => {
         const sys2 = +select2.value.slice(1, select2.value.length);
         console.log(sys1, sys2);
         if (sys1 !== sys2) {
-            const tasksNames = ["common", "least", "greatest", "comprasion"];
-            task = tasksNames[Math.random()];
+            if (document.querySelectorAll(".taskDiv") != null) {
+                for (let i of document.querySelectorAll(".taskDiv")) {
+                    i.remove();
+                }
+            }
+            const tasksNames = ["common", "least", "greatest"];
+            task = tasksNames[getRandomInt(2)];
             document.querySelector(".tasksDiv").classList.add("hide");
+            if (task == "common") {
+                commonTask(sys1, sys2);
+            }
+            else if (task == "least") {
+                leastTask(sys1, sys2);
+            }
+
+            else if (task == "greatest") {
+                greatestTask(sys1, sys2);
+            }
         }
     })
     document.querySelector(".backButton0").addEventListener("click", () => {
