@@ -416,7 +416,7 @@ document.querySelector(".calculator").addEventListener("click", () => { // Пр�
                 value2 = +radioButton2[i].value;
             };
             i += 1;
-        };
+        };  
         console.log(value1, value2);
         document.querySelector(".systemDiv").classList.add("hide");
         createMainDiv(value1, value2);
